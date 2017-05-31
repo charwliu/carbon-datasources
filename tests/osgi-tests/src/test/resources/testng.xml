@@ -17,10 +17,10 @@
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Carbon-JNDI-Test-Suite">
-    <test name="carbon-jndi-tests" preserve-order="true" parallel="false">
+<suite name="Carbon-Datasources-Test-Suite">
+    <test name="carbon-datasources-tests" preserve-order="true" parallel="false">
         <classes>
-            <!--<class name="org.wso2.carbon.datasource.osgi.DataSourceServiceTest"/>-->
+            <class name="org.wso2.carbon.datasource.osgi.DataSourceServiceTest"/>
             <class name="org.wso2.carbon.datasource.osgi.DataSourceManagementServiceTest"/>
         </classes>
     </test>

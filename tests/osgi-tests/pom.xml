@@ -16,9 +16,10 @@
   -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>carbon-datasource-tests</artifactId>
         <groupId>org.wso2.carbon.datasources</groupId>
+        <artifactId>carbon-datasource-tests</artifactId>
         <version>1.1.0</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -27,123 +28,70 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.ops4j.pax.exam</groupId>
-            <artifactId>pax-exam</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.ops4j.pax.exam</groupId>
-            <artifactId>pax-exam-container-native</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.ops4j.pax.exam</groupId>
             <artifactId>pax-exam-testng</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.ops4j.pax.exam</groupId>
             <artifactId>pax-exam-link-mvn</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.ow2.spec.ee</groupId>
+            <artifactId>ow2-jta-1.1-spec</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jacoco</groupId>
+            <artifactId>org.jacoco.ant</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.eclipse.osgi</groupId>
+            <artifactId>org.eclipse.osgi</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.wso2.eclipse.osgi</groupId>
+            <artifactId>org.eclipse.osgi.services</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.ops4j.pax.logging</groupId>
+            <artifactId>pax-logging-log4j2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.json.wso2</groupId>
+            <artifactId>json</artifactId>
+            <version>${org.json.import.version}</version>
         </dependency>
         <dependency>
             <groupId>org.ops4j.pax.url</groupId>
             <artifactId>pax-url-aether</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.ops4j.pax.logging</groupId>
-            <artifactId>pax-logging-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.ops4j.pax.logging</groupId>
-            <artifactId>pax-logging-log4j2</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.ow2.spec.ee</groupId>
-            <artifactId>ow2-jta-1.1-spec</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.eclipse.equinox</groupId>
-            <artifactId>org.eclipse.equinox.simpleconfigurator</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.wso2.carbon.datasources</groupId>
             <artifactId>org.wso2.carbon.datasource.core</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.apache.felix</groupId>
-            <artifactId>org.apache.felix.gogo.command</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.felix</groupId>
-            <artifactId>org.apache.felix.gogo.runtime</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.felix</groupId>
-            <artifactId>org.apache.felix.gogo.shell</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.eclipse.equinox</groupId>
-            <artifactId>org.eclipse.equinox.app</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.eclipse.equinox</groupId>
-            <artifactId>org.eclipse.equinox.common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.eclipse.equinox</groupId>
-            <artifactId>org.eclipse.equinox.concurrent</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.eclipse.equinox</groupId>
-            <artifactId>org.eclipse.equinox.console</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.eclipse.equinox</groupId>
-            <artifactId>org.eclipse.equinox.ds</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.eclipse.equinox</groupId>
-            <artifactId>org.eclipse.equinox.frameworkadmin</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.eclipse.equinox</groupId>
-            <artifactId>org.eclipse.equinox.frameworkadmin.equinox</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.eclipse.equinox</groupId>
-            <artifactId>org.eclipse.equinox.launcher</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.eclipse.equinox</groupId>
-            <artifactId>org.eclipse.equinox.preferences</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.eclipse.equinox</groupId>
-            <artifactId>org.eclipse.equinox.registry</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.eclipse.equinox</groupId>
-            <artifactId>org.eclipse.equinox.simpleconfigurator.manipulator</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.eclipse.equinox</groupId>
-            <artifactId>org.eclipse.equinox.util</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.eclipse.equinox</groupId>
-            <artifactId>org.eclipse.equinox.cm</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.wso2.orbit.org.yaml</groupId>
+            <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
         </dependency>
         <dependency>
@@ -156,6 +104,30 @@
             <artifactId>org.wso2.carbon.jndi</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+        <!--Test Distribution-->
+        <dependency>
+            <groupId>org.wso2.carbon.datasources</groupId>
+            <artifactId>wso2carbon-datasources-test</artifactId>
+            <type>zip</type>
+        </dependency>
+
+        <!--Pax exam Container Carbon-->
+        <dependency>
+            <groupId>org.wso2.carbon</groupId>
+            <artifactId>org.wso2.carbon.container</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.wso2.carbon</groupId>
+            <artifactId>org.wso2.carbon.pax.exam.feature</artifactId>
+            <version>${carbon.kernel.version}</version>
+            <type>zip</type>
+        </dependency>
+
     </dependencies>
 
     <profiles>
@@ -179,7 +151,7 @@
                                     <goal>copy-resources</goal>
                                 </goals>
                                 <configuration>
-                                    <outputDirectory>${project.build.directory}/carbon-home</outputDirectory>
+                                    <outputDirectory>${project.build.directory}/carbon-home1</outputDirectory>
                                     <overwrite>true</overwrite>
                                     <resources>
                                         <resource>
@@ -195,15 +167,21 @@
                         <artifactId>maven-dependency-plugin</artifactId>
                         <executions>
                             <execution>
-                                <id>copy-jacoco-dependencies</id>
+                                <id>unpack-distribution</id>
                                 <phase>compile</phase>
                                 <goals>
-                                    <goal>copy-dependencies</goal>
+                                    <goal>unpack</goal>
                                 </goals>
                                 <configuration>
-                                    <outputDirectory>${project.build.directory}</outputDirectory>
-                                    <includeTypes>jar</includeTypes>
-                                    <includeArtifactIds>org.jacoco.ant</includeArtifactIds>
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>org.wso2.carbon.datasources</groupId>
+                                            <artifactId>wso2carbon-datasources-test</artifactId>
+                                            <type>zip</type>
+                                            <overWrite>true</overWrite>
+                                            <outputDirectory>${project.build.directory}</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
                                 </configuration>
                             </execution>
                         </executions>
@@ -213,9 +191,14 @@
                         <artifactId>maven-surefire-plugin</artifactId>
                         <configuration>
                             <systemPropertyVariables>
-                                <org.ops4j.pax.url.mvn.localRepository>${settings.localRepository}
-                                </org.ops4j.pax.url.mvn.localRepository>
                                 <jacoco-agent.destfile>${project.build.directory}/jacoco.exec</jacoco-agent.destfile>
+                                <org.wso2.carbon.test.default.distribution>
+                                    org.wso2.carbon.datasources:wso2carbon-datasources-test
+                                </org.wso2.carbon.test.default.distribution>
+                                <org.ops4j.pax.logging.DefaultServiceLog.level>ERROR</org.ops4j.pax.logging.DefaultServiceLog.level>
+                                <carbon.kernel.version>${carbon.kernel.version}</carbon.kernel.version>
+                                <org.ops4j.pax.url.mvn.localRepository>${settings.localRepository}</org.ops4j.pax.url.mvn.localRepository>
+
                             </systemPropertyVariables>
                             <suiteXmlFiles>
                                 <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>

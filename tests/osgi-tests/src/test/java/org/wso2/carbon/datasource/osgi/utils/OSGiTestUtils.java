@@ -29,11 +29,8 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-import static org.ops4j.pax.exam.CoreOptions.mavenBundle;
 import static org.ops4j.pax.exam.CoreOptions.options;
-import static org.ops4j.pax.exam.CoreOptions.repositories;
 import static org.ops4j.pax.exam.CoreOptions.systemProperty;
-import static org.ops4j.pax.exam.CoreOptions.url;
 
 /**
  * This class contains Utility methods to configure PAX-EXAM container.
@@ -51,10 +48,11 @@ public class OSGiTestUtils {
      */
     public static Option[] getDefaultPaxOptions() {
         return options(
-                repositories("http://maven.wso2.org/nexus/content/groups/wso2-public"),
-                systemProperty("carbon.home").value(System.getProperty("carbon.home")),
-                systemProperty(Constants.START_TIME).value(System.getProperty(Constants.START_TIME)),
+                // repositories("http://maven.wso2.org/nexus/content/groups/wso2-public"),
+                //systemProperty("carbon.home").value(System.getProperty("carbon.home")),
+                systemProperty(Constants.START_TIME).value(System.getProperty(Constants.START_TIME)) //,
                 //must install the testng bundle
+                /*
                 url(mavenBundle().artifactId("testng").groupId("org.testng").versionAsInProject().getURL()),
                 url(mavenBundle().artifactId("org.eclipse.osgi.services").groupId("org.wso2.eclipse.osgi").
                         versionAsInProject().getURL()),
@@ -71,7 +69,7 @@ public class OSGiTestUtils {
                         versionAsInProject().getURL()),
                 url(mavenBundle().artifactId("org.apache.felix.gogo.shell").groupId("org.apache.felix").
                         versionAsInProject().getURL()),
-                url(mavenBundle().artifactId("org.eclipse.equinox.app").groupId("org.wso2.eclipse.equinox").
+                url(mavenBundle().artifactId("org.eclipse.equinox.app:32").groupId("org.wso2.eclipse.equinox").
                         versionAsInProject().getURL()),
                 url(mavenBundle().artifactId("org.eclipse.equinox.common").groupId("org.wso2.eclipse.equinox").
                         versionAsInProject().getURL()),
@@ -97,10 +95,14 @@ public class OSGiTestUtils {
                         versionAsInProject().getURL()),
                 url(mavenBundle().artifactId("org.eclipse.equinox.cm").groupId("org.wso2.eclipse.equinox").
                         versionAsInProject().getURL()),
-                url(mavenBundle().artifactId("snakeyaml").groupId("org.wso2.orbit.org.yaml").
+                url(mavenBundle().artifactId("snakeyaml").groupId("org.yaml").
+                        versionAsInProject().getURL()),
+                url(mavenBundle().artifactId("json").groupId("org.json.wso2").
                         versionAsInProject().getURL()),
                 url(mavenBundle().artifactId("org.wso2.carbon.core").groupId("org.wso2.carbon").versionAsInProject()
                         .getURL())
+                */
+
         );
     }
 
@@ -121,11 +123,12 @@ public class OSGiTestUtils {
     public static void setEnv() {
         setCarbonHome();
         setStartupTime();
-        copyCarbonYAML();
-        copyLog4jXMLFile();
-        copyLaunchPropertiesFile();
-        copyDSConfigFile();
-        copyDeploymentFile();
+        //copyCarbonYAML();
+        //copySecureVaultYAML();
+        //copyLog4jXMLFile();
+        //copyLaunchPropertiesFile();
+        //copyDSConfigFile();
+        //copyDeploymentFile();
     }
 
     /**
@@ -150,16 +153,25 @@ public class OSGiTestUtils {
      * Replace the existing carbon.yml file with populated carbon.yml file.
      */
     private static void copyCarbonYAML() {
-        copy(Paths.get("src", "test", "resources", "conf", "carbon.yml"),
+        copy(Paths.get("src", "test", "resources", "carbon-home", "conf", "carbon.yml"),
                 Paths.get(System.getProperty("carbon.home"),
                         "conf", "carbon.yml"));
+    }
+
+    private static void copySecureVaultYAML() {
+        copy(Paths.get("src", "test", "resources", "carbon-home", "conf", "secure-vault.yaml"),
+                Paths.get(System.getProperty("carbon.home"),
+                        "conf", "secure-vault.yaml"));
+        copy(Paths.get("src", "test", "resources", "carbon-home", "master-keys.yaml"),
+                Paths.get(System.getProperty("carbon.home"),
+                        "master-keys.yaml"));
     }
 
     /**
      * Replace the existing log4j2.xml file with populated log4j2.xml file.
      */
     private static void copyLog4jXMLFile() {
-        copy(Paths.get("src", "test", "resources", "conf", "log4j2.xml"),
+        copy(Paths.get("src", "test", "resources", "carbon-home", "conf", "log4j2.xml"),
                 Paths.get("conf", "log4j2.xml"));
     }
 
@@ -167,7 +179,7 @@ public class OSGiTestUtils {
      * Replace the existing launch.properties file with populated launch.properties file.
      */
     private static void copyLaunchPropertiesFile() {
-        copy(Paths.get("src", "test", "resources", "conf", "osgi", "launch.properties"),
+        copy(Paths.get("src", "test", "resources", "carbon-home", "conf", "osgi", "launch.properties"),
                 Paths.get("conf", "osgi", "launch.properties"));
     }
 
@@ -175,7 +187,7 @@ public class OSGiTestUtils {
      * Replace the existing master-datasources.xml file with populated master-datasources.xml file.
      */
     private static void copyDSConfigFile() {
-        copy(Paths.get("src", "test", "resources", "conf", "datasources", "master-datasources.xml"),
+        copy(Paths.get("src", "test", "resources", "carbon-home", "conf", "datasources", "master-datasources.xml"),
                 Paths.get("conf", "datasources", "master-datasources.xml"));
     }
 
@@ -183,7 +195,7 @@ public class OSGiTestUtils {
      * Replace the existing "README.txt file with populated "README.txt file.
      */
     private static void copyDeploymentFile() {
-        copy(Paths.get("src", "test", "resources", "deployment", "README.txt"),
+        copy(Paths.get("src", "test", "resources", "carbon-home", "deployment", "README.txt"),
                 Paths.get("deployment", "README.txt"));
     }
 
